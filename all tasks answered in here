@@ -1,0 +1,44 @@
+<?php
+class Task
+{
+    public function repeat($array)
+    {
+        $output = '';
+        for($i=0; $i<3; $i++) {
+            $output .= implode(',', $array) . ',';
+        }
+        $newArray = explode(',', $output);
+        print_r(array_filter($newArray));
+    }
+    public function reformat($text)
+    {
+        $vowels = array('a', 'e', 'i', 'o', 'u');
+        $text = strtolower($text);
+        $noVowels = str_replace($vowels, '', $text);
+        echo ucfirst($noVowels);
+    }
+    public function next_binary_number($input)
+    {
+        $next = '';
+        $carry = 0;
+        for ($i=count($input)-1; $i>=0; --$i) {
+            if ($input[$i] == 1) {
+                $carry = 1;
+                $next .= '0';
+            } else {    
+                $next .= '1';
+            }
+        
+            if ( $carry == 0 ) break;
+        }
+        
+        $carry .= $next;
+        echo $carry;
+    }
+
+}
+
+$t = new Task();
+$t->repeat(['1,2,3']);
+$t->reformat('liMeSHArp DeveLoper TEST');
+$t->next_binary_number(array(1,1));
